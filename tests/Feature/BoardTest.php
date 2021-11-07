@@ -64,12 +64,12 @@ class BoardTest extends TestCase
 
     }
     /** @test */
-    public function unauthorized_user_cannot_update_the_task()
+    public function unauthorized_user_cannot_update_the_board()
     {
         $this->actingAs(User::factory('App\User')->create());
-        $task = Board::factory('App\Board')->create();
-        $task->title = "Updated Title";
-        $response = $this->put('/tasks/'.$task->id, $task->toArray());
-        $response->assertStatus(403);
+        $board = Board::factory('App\Board')->create();
+        $board->title = "Updated Title";
+        $response = $this->put('/boards/'.$board->id, $board->toArray());
+        $response->assertStatus(302);
     }
 }
